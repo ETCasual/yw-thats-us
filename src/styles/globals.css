@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: chi;
+  src: url(/fonts/chi.ttf);
+}
+
+@font-face {
+  font-family: eng;
+  src: url(/fonts/eng.ttf);
+}
