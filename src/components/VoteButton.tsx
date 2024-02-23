@@ -36,7 +36,7 @@ export const VoteButton: FunctionComponent<VoteButtonProps> = ({
         onClick={() => incrementCounter()}
         className="relative flex w-full cursor-pointer flex-row items-center justify-center border-4 border-b-[12px] border-white bg-[#ab2e13] px-3 py-2 text-xl font-bold uppercase text-white shadow-xl"
       >
-        <span className="absolute -left-3 -top-3 border-4 border-white bg-blue-800 p-1 px-2">
+        <span className="absolute -left-7 -top-3 border-4 border-white bg-blue-800 p-1 px-2">
           {label}
         </span>
         {/* eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing */}

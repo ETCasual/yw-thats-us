@@ -3,7 +3,7 @@
 import { VoteButton } from "@/components/VoteButton";
 import { data } from "@/data";
 import { doc, increment, updateDoc } from "firebase/firestore";
-import { FunctionComponent } from "react";
+import { type FunctionComponent } from "react";
 import { useFirestore, useFirestoreDocData } from "reactfire";
 
 const AdminPage = () => {
