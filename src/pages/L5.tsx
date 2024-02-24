@@ -4,7 +4,7 @@
 import { VoteBar } from "@/components/VoteBar";
 import { data } from "@/data";
 import { doc } from "firebase/firestore";
-import { type FunctionComponent } from "react";
+import { useEffect, type FunctionComponent, useState } from "react";
 import { useFirestore, useFirestoreDocData } from "reactfire";
 
 /* eslint-disable @next/next/no-img-element */
@@ -40,7 +40,14 @@ interface VoteGroupProps {
 
 const VoteGroup: FunctionComponent<VoteGroupProps> = ({ state }) => {
   const firestore = useFirestore();
-  const vote = doc(firestore, "votes", String(state));
+
+  const [prevState, setPrevState] = useState(state);
+  const vote = doc(firestore, "votes", String(prevState));
+
+  useEffect(() => {
+    if (state === prevState) return;
+    setPrevState(state);
+  }, [state, prevState]);
 
   const { status, data } = useFirestoreDocData(vote);
 
