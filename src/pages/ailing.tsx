@@ -29,7 +29,11 @@ const AdminPage = () => {
           incrementBy={1}
           currentState={currentVoteState.state}
         />
-        <div className="h-[100px]" />
+
+        {/* <div className="h-[20px]" /> */}
+        <div className="w-full text-center text-lg text-white">Display QR</div>
+        <AdminShowQR />
+        {/* <div className="h-[100px]" /> */}
         <div className="w-full text-center text-lg text-white">
           This round&apos;s options
         </div>
@@ -74,5 +78,27 @@ const AdminButton: FunctionComponent<AdminButtonProps> = ({
     >
       {label}
     </button>
+  );
+};
+
+const AdminShowQR = () => {
+  const firestore = useFirestore();
+  const ref = doc(firestore, "votes", "settings");
+  const { status, data } = useFirestoreDocData(ref);
+  console.log(data);
+  return (
+    status === "success" && (
+      <button
+        onClick={() =>
+          updateDoc(ref, {
+            ...data,
+            showQR: !data.showQR,
+          })
+        }
+        className={`relative flex w-full cursor-pointer flex-row items-center justify-center border-4 border-white px-3 py-1 text-xl font-bold uppercase text-white shadow-xl disabled:opacity-50 ${data.showQR ? "bg-green-600" : "bg-red-400"}`}
+      >
+        Show QR?
+      </button>
+    )
   );
 };
