@@ -39,43 +39,13 @@ interface VoteGroupProps {
 }
 
 const VoteGroup: FunctionComponent<VoteGroupProps> = ({ state }) => {
-  const firestore = useFirestore();
-
-  const [prevState, setPrevState] = useState(state);
-  const vote = doc(firestore, "votes", String(prevState));
-
-  useEffect(() => {
-    if (state === prevState) return;
-    setPrevState(state);
-  }, [state, prevState]);
-
-  const { status, data } = useFirestoreDocData(vote);
-
   return (
-    status === "success" && (
-      <div className="flex h-full max-h-[675px] w-full flex-col items-start justify-end gap-12">
-        <VoteBar
-          votes={data.A}
-          overall={parseInt(data.totalCount)}
-          answer="A"
-        />
-        <VoteBar
-          votes={data.B}
-          overall={parseInt(data.totalCount)}
-          answer="B"
-        />
-        <VoteBar
-          votes={data.C}
-          overall={parseInt(data.totalCount)}
-          answer="C"
-        />
-        <VoteBar
-          votes={data.D}
-          overall={parseInt(data.totalCount)}
-          answer="D"
-        />
-      </div>
-    )
+    <div className="flex h-full max-h-[675px] w-full flex-col items-start justify-end gap-12">
+      <VoteBar state={state} answer="A" />
+      <VoteBar state={state} answer="B" />
+      <VoteBar state={state} answer="C" />
+      <VoteBar state={state} answer="D" />
+    </div>
   );
 };
 
