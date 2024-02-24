@@ -21,7 +21,7 @@ export const data: Record<
     a: "不要迟到",
     b: "记得Reply",
     c: "跟我生活在一起",
-    d: "早点找到另外一半",
+    d: "不要太唠叨",
   },
   4: {
     question: "对于服事, 你面对到的挑战是",
