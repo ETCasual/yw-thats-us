@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { VoteBar } from "@/components/VoteBar";
@@ -23,7 +24,9 @@ const L5 = () => {
       <div className="absolute bottom-40 flex w-full max-w-[3410px] flex-row justify-between gap-32">
         {status === "success" && <QuestionBox state={currentVoteState.state} />}
         {status === "success" && <VoteGroup state={currentVoteState.state} />}
-        {status === "success" && <QuestionBox state={currentVoteState.state} />}
+        {status === "success" && (
+          <QuestionBox state={currentVoteState.state} right />
+        )}
       </div>
     </main>
   );
@@ -71,12 +74,28 @@ const VoteGroup: FunctionComponent<VoteGroupProps> = ({ state }) => {
 
 interface QuestionBoxProps {
   state: number;
+  right?: boolean;
 }
 
-const QuestionBox: FunctionComponent<QuestionBoxProps> = ({ state }) => {
+const QuestionBox: FunctionComponent<QuestionBoxProps> = ({ state, right }) => {
+  const firestore = useFirestore();
+
+  const { status, data: voteSettings } = useFirestoreDocData(
+    doc(firestore, "votes", "settings"),
+  );
+
   return (
-    <div className="h-[624px] max-h-[624px] min-w-[500px] max-w-[500px] border-[20px] border-white bg-[#ab2e13] p-12 text-center text-[5rem] font-bold tracking-widest text-[#fff]">
-      {data[state]?.question}
-    </div>
+    status === "success" && (
+      <div className="relative h-[624px] max-h-[624px] min-w-[500px] max-w-[500px] border-[20px] border-white bg-[#ab2e13] p-7 text-center text-[4.5rem] font-bold tracking-widest text-[#fff]">
+        {voteSettings.showQR && (
+          <img
+            src="/frame.webp"
+            alt="QR"
+            className={`absolute -top-1/3 ${right ? "-right-1/2" : "-left-1/2"}`}
+          />
+        )}
+        {data[state]?.question}
+      </div>
+    )
   );
 };
