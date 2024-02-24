@@ -4,7 +4,7 @@
 import { VoteBar } from "@/components/VoteBar";
 import { data } from "@/data";
 import { doc } from "firebase/firestore";
-import { useEffect, type FunctionComponent, useState } from "react";
+import { type FunctionComponent } from "react";
 import { useFirestore, useFirestoreDocData } from "reactfire";
 
 /* eslint-disable @next/next/no-img-element */

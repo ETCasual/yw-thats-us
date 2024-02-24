@@ -7,7 +7,7 @@ export const data: Record<
     a: "被 Recognise",
     b: "领袖叫我去",
     c: "因为有需要 / 负担",
-    d: "",
+    d: "没有人服事 所以我去",
   },
   2: {
     question: "现在小组的氛围",
@@ -21,7 +21,7 @@ export const data: Record<
     a: "不要迟到",
     b: "记得Reply",
     c: "跟我生活在一起",
-    d: "",
+    d: "早点找到另外一半",
   },
   4: {
     question: "对于服事, 你面对到的挑战是",

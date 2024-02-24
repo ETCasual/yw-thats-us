@@ -44,9 +44,7 @@ export const VoteBar: FunctionComponent<VoteBarProps> = ({ answer, state }) => {
     setWidth((votes / overall) * 2006);
   }, [answer, overall, votes]);
 
-  return status === "success" && answer === "D" && !votes ? (
-    <></>
-  ) : (
+  return (
     <div className="flex h-[120px] flex-row items-center">
       <div
         className={`${votes !== 0 ? "border-r-0 " : ""}font-eng flex h-full flex-row items-center justify-center border-[20px] border-white bg-blue-600 px-10 text-[100px] text-white`}
